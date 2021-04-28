@@ -22,7 +22,7 @@
 
     <body>
 
-        <h1 align="middle">Particles All the Way Down</h1> 
+        <h1 align="middle">Particles All the Way Down Milestone</h1> 
         <br />
         
         <h1>Members</h1>
@@ -39,121 +39,11 @@
             The purpose of this project is to use particle simulation to make animated, interesting, 2-dimensional scenes.  This is not an interactive demo, rather a scene with predefined initial conditionals that we render for 10 seconds.   
         </p>
         
-        <h1>
-            Problem Description
-        </h1>
-        <p>
-            Particle simulation gives a more granular view of objects and scenes. For example, in the film Interstellar the black hole scenes were all rendered using a particle sim method, that gave it that vibrant look. While it is infeasible for us to create something on that order in the time frame we have, we took inspiration from Noita on how they defined a simple set of particles that shaped their entire world. The problem we wish to solve is how quickly we can render a realistic particle based scene that takes advantage of the full capabilities of both particle/particle and particle/light interactions. This problem is challenging because particle sims are computationally heavy, and require much finer ray tracing methods to fully encapsulate how to light different objects represented with really tiny particles. Additionally, making the sims realistic (at least physically, possibly not in appearance), with a simple set of particles is challenging because we are representing the complex nature of physics with a simpler set of rules.  We will be doing this mainly by implementing advanced ray tracing speedups and particle simulation methods discussed in class.
-
-        </p>
         
-        <h2 align="middle">Goals and Deliverables</h2>
-        <p>
-            The first thing we need to do for this project is define the particle properties.  This means working out the physics of how each type of particle will move around the screen and interact with light.  Additionally, we must also define how these particles interact with other particles both of the same type and different types.  Our goal is to come up with 8 different types of particles: fire, water, stone, ice, sand, organic matter, gravitons, and bedrock.
-The general function we hope to attain from each particle is explained as follows:
-        </p>
-        <p>
-            -Fire - emits light and spreads/burn
-        </p>
-        <br>
-        <p>
-            -Water - reflect and refract light.  Flows, makes things wet, freezes, and evaporates.
-        </p>
-        <br>
-        <p>
-            -Stone - holds its shape and falls
-        </p>
-        <br>
-        <p>
-            -Ice - reflects light, melts, holds its shape
-        </p>
-        <br>
-        <p>
-            -Sand - does not hold its shape and falls
-        </p>
-        <br>
-        <p>
-            -Organic Matter - Grows when touching water and being hit by natural light.  Burns from fire
-        </p>
-        <br>
-        <p>
-            -Gravitons - Bends light, produces black holes when gathered.  Sucks objects in
-        </p>
-        <br>
-        <p>
-            -Bedrock - Does not move, stays where it is placed, unaffected by other particles
-        </p>
-        <br>
-        <p>
-            After we have the particle interactions determined, we need to find appropriate textures for each one and come up with a scene in which these particles will interact.  Once we have the groundwork laid, most of our work will go into speeding up the rendering of our scene.  We will be using ray tracing for light (as well as ray marching for around the black holes) so we must come up with ways to accelerate these processes.  This will be done primarily using BVH structures, importance sampling, and other methods described in the extra credit sections of projects.  The main metric we will be using to judge the performance of our project is the speed at which we can render a scene with 1, 10, 100, and 1000 particles of each type.
-        </p>
-        <br>
-        <p>
-            The challenge for this project comes from the flexibility we expect from the simulation settings. The appearance should be strongly dependent on the textures that we use, however the properties of particles should be consistent across scenes that we render. The lighting sources that we wish to simulate change depending on the objects material properties and physics. The most extreme example (which we took inspiration from Kenny’s project for) is the black hole: when enough of its particles are accumulated in an area, it should form a black hole that bends light around with (similar to the ray marching algorithm), and also kills any light rays that touch it. Managing all the interactions between light and our particles (like how fire spreads and also acts as a light source) is one way we can test the limits on possible ray tracing (and ray marching) algorithms we learned in class. We have been able to produce simple scenes with different light properties in previous projects, but seeing how it can come together in scenes with multiple complex materials (and possibly animated and at different resolutions) is one of the main challenges we wish to overcome. 
-        </p>
-        <br>
-        <p>
-            Another important aspect that we care about is performance. Particle sims are notorious for being computationally expensive for high granularity. We are interested in rendering scenes like in Noita, that are pixelated and easy to render. However, if we wish to render galaxy scenes and the like, not only will the textures be different but the fluid properties used to simulate a galaxy image and animate it will also be a lot stronger, and the particles will be a lot smaller. We will measure common factors, such as the number of light rays per intersection and how many intersections occur in unit time. Different data structures (similar to bvhs) will have to be constructed, as well as clever ray marching algorithms to parameterize more complex light paths, such as around a black hole particle. Finally, because realistic physics is a goal of our project with simple particles, the light will also have to be properly importance sampled (possibly using a pdf approximation method like MCMCs): (The types of images we want to render range from 8 bit game scenes (similar to Noita) like: Noita.jpg, And galaxy sims like: galaxy.jpg): 
-        </p>
-        <div align="center">
-            <table style="width=100%">
-                <tr>
-                    <td align="middle">
-                    <img src="doc/noita.jpg" width="480px" />
-                    <figcaption align="middle"> Noita.jpg
-</figcaption>
-                </tr>
-                <tr>
-                    <td align="middle">
-                    <img src="doc/galaxy.jpg" width="480px" />
-                        <figcaption align="middle">galaxy.jpg</figcaption>
-                </tr>
-
-                
-            </table>
-        </div>
-        <br> 
-        
-        
-        
-        
-        <h3>What questions we plan to answer</h3>
-        <p>
-            How physically realistic can we make animations with a simple set of particles? 
-
-        </p>
-        <br>
-        <p>
-            How physically realistic can we make animations with a simple set of particles? 
-        </p>
-        <br>
-        <p>
-            What is the most speedup we can get using more interesting ray tracing acceleration methods?
-        </p>
-        <br>
-        <p>
-            How complex can we make the light sources that interact with our particles?
-        </p>
-        <br>
-        <p>
-            What is the range of images we can render with just these particles? 
-        </p>
-        <br>
-        
-        <h3>What we plan to deliver</h3>
-        <p>
-            Simples 8 bit animations akin to the noita image that showcase how our different particles can interact with each other and represent complex scenes. 
-        </p>
-        <br>
-        <h3>What we hope to deliver</h3>
-        <p>
-            More complex animations (like the galaxy image) that use more interesting textures and give a feel of physics based realism, as well as the 8 bit images. Our ultimate aspiration is to render completely different animations using the same system, and possibly have some form of interaction (such as shooting particles from a character in the 8 bit scene, or being able to generate random galaxies). 
-        </p>
-        <br>
         
         
 
-        <h3>Schedule</h3>
+        <h3>Work Plan (Updated)</h3>
         
             <p>
                 Week 1 + 2: Research paper readings on particle sim, finding an adequate framework to work in and how to render these scenes. Stuff like THREE.js comes to mind (from Kenny), but there could be better packages using more familiar languages, like python of c++. We need to do the bulk of our project structure in this and the second week. 
@@ -170,71 +60,7 @@ The general function we hope to attain from each particle is explained as follow
 
 
         
-        <h2 align="middle">Resources</h2>
-        <p>
-Kenny’s project last year for black hole sims: https://celticspwn.github.io/CS184FinalProject/final.html
-        </p>
-        <br> 
-        <p>
-            PARTICLE BASED SIM OF GRANULAR OBJECTS: https://dl.acm.org/doi/abs/10.1145/1073368.1073379
-        </p>
-        <br>
-        <p>
-          Gravitational lensing (particle sim based) from the movie interstellar: https://iopscience.iop.org/article/10.1088/0264-9381/32/6/065001
-        </p>
-        <br>
-        <p>
-          Possibly for caustic particles: caustic material representations: http://graphics.cs.ucf.edu/old/caustics/caustics.pdf
-        </p>
-        <br>
-        <p>
-          Shaders as materials in three.js:https://medium.com/@sidiousvic/how-to-use-shaders-as-materials-in-three-js-660d4cc3f12a
-        </p>
-        <br>
-        <p>
-          Mitsuba physically based renderer c++ : https://www.mitsuba-renderer.org/
-        </p>
-        <br>
-        <p>
-          Raytracing through galaxy lensing: https://www.aanda.org/articles/aa/abs/2009/19/aa11054-08/aa11054-08.html
-        </p>
-        <br>
-        <p>
-          Three.js: https://github.com/mrdoob/three.js
-        </p>
-        <br>
-        <p>
-          Raymarching distance fields for more complex objects: https://www.iquilezles.org/www/articles/distfunctions/distfunctions.htm (could be useful for the ambiguous shapes the particles could make) 
-        </p>
-        <br>
-        <p>
-          Algorithmic particle sim: https://www.academia.edu/14731902/Particle_based_simulation_An_algorithmic_perspective
-        </p>
-        <br>
-        <p>
-          Simple Particle Sandbox: https://blog.scottlogic.com/2016/11/01/go-particle-simulation.html
-        </p>
-        <br>
-        <p>
-          Black hole in blender: https://www.youtube.com/watch?v=5naMFeWTBeY
-        </p>
-        <br>
-        <p>
-         MCMC stuff: https://people.duke.edu/~ccc14/sta-663/MCMC.html, http://pages.cs.wisc.edu/~jerryzhu/cs731/mcmc.pdf
-        </p>
-        <br>
-        <p>
-          Rasterization framework for blackholes : https://www.jstage.jst.go.jp/article/ipsjjip/24/4/24_690/_article
-        </p>
-        <br>
-        <p>
-          Raytracing black hole: https://rantonels.github.io/starless/
-        </p>
-        <br>
-        <p>
-          NOITA GAME: https://noitagame.com/
-        </p>
-        <br>
+        
 
     </body>
 </html>
